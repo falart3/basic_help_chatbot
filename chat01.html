@@ -1,0 +1,57 @@
+<html>
+  <head>
+ 
+    <script>
+      function sendMessage() {
+        // Obtengo el mensaje escrito por el usuario
+        const message = document.getElementById("message").value;
+        
+        // Limpio el formulario
+        document.getElementById("message").value = "";
+
+        // Creo un elemento de respuesta para el chatbot
+        const response = document.createElement("p");
+        response.innerHTML = "Chatbot: " + generateResponse(message);
+
+        // Añado la respuesta a la conversación
+        document.getElementById("conversation").appendChild(response);
+      }
+
+      function generateResponse(message) {
+        //links externos
+        let urlia = "https://chat.openai.com/chat";
+        let urlweb = "https://www.google.com/search?q=";
+                
+        // Aquí puedo escribir la lógica para generar una respuesta a partir del mensaje del usuario
+        if (message.toLowerCase().includes("hola")) {
+          return "Hola, ¿en qué puedo ayudarte hoy?";
+        } else if (message.toLowerCase().includes("ayuda")) {
+          return "Claro, ¿en qué necesitas ayuda?";
+        } else if (message.toLowerCase().includes("donde")) {
+          return "¿Quieres preguntar a un IA o buscar en la web?, puedo darte enlaces";
+        } else if (message.toLowerCase().includes("ia")) {
+          return "Debes buscar un IA, pincha aqui: <a href='" + encodeURI(urlia) + "' target='_blank'>" + urlia + "</a>";
+        } else if (message.toLowerCase().includes("web")) {
+          return "Puedes buscar aqui: <a href='" + encodeURI(urlweb) + "' target='_blank'>" + urlweb + "</a>";
+        } else if (message.toLowerCase().includes("localiz")) {
+        
+          return "Tu estas alli" + window.open("gps05.html", "_blank");
+
+        
+        } else {
+          return "Lo siento, no entiendo lo que estás diciendo.";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Chatbot de Ayuda</h1>
+    <div id="conversation">
+      <p>Bienvenido al chatbot de ayuda basico creado por <a href="http://falart3.jimdofree.com" target="_blank">FAL</a> <br> Escriba su mensaje a continuación:</p>
+    </div>
+    <form>
+      <input type="text" id="message">
+      <button type="button" onclick="sendMessage()">Enviar</button>
+    </form>
+  </body>
+</html>
